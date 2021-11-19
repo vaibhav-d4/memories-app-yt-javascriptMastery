@@ -35,6 +35,7 @@ const Form = () => {
       >
         <Typography variant="h6">Creating a Memory</Typography>
         <TextField
+          sx={{ marginBottom: "15px" }}
           name="creator"
           variant="outlined"
           label="Creator"
@@ -45,6 +46,7 @@ const Form = () => {
           }
         />
         <TextField
+          sx={{ marginBottom: "15px" }}
           name="title"
           variant="outlined"
           label="Title"
@@ -53,6 +55,7 @@ const Form = () => {
           onChange={(e) => setPostData({ ...postData, title: e.target.value })}
         />
         <TextField
+          sx={{ marginBottom: "15px" }}
           name="message"
           variant="outlined"
           label="Message"
@@ -63,6 +66,7 @@ const Form = () => {
           }
         />
         <TextField
+          sx={{ marginBottom: "15px" }}
           name="tags"
           variant="outlined"
           label="Tags"
@@ -80,6 +84,7 @@ const Form = () => {
           />
         </div>
         <Button
+          sx={{ marginBottom: "15px", marginTop: "10px" }}
           className={classes.buttonSubmit}
           variant="contained"
           color="primary"
@@ -90,6 +95,7 @@ const Form = () => {
           Submit
         </Button>
         <Button
+          sx={{ marginBottom: "10px" }}
           variant="contained"
           color="secondary"
           size="small"
