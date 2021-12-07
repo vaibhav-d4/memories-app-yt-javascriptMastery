@@ -37,8 +37,8 @@ export default makeStyles((theme) => ({
     alignItems: "center",
   },
   purple: {
-    // color: theme.palette.getContrastText(deepPurple[500]),
-    color: deepPurple[500],
+    color: theme.palette.getContrastText(deepPurple[500]),
+    // color: deepPurple[500],
     backgroundColor: deepPurple[500],
   },
 }));

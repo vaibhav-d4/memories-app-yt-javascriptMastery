@@ -18,7 +18,6 @@ const NavBar = () => {
             to="/"
             className={classes.heading}
             variant="h2"
-            // align="center"
           >
             Memories
             <img
