@@ -61,7 +61,6 @@ const Form = ({ currentId, setCurrentId }) => {
           {currentId ? "Editing" : "Creating"} a Memory
         </Typography>
         <TextField
-          sx={{ margin: "5px 15px" }}
           name="creator"
           variant="outlined"
           label="Creator"
@@ -72,7 +71,6 @@ const Form = ({ currentId, setCurrentId }) => {
           }
         />
         <TextField
-          sx={{ margin: "5px 15px" }}
           name="title"
           variant="outlined"
           label="Title"
@@ -81,7 +79,6 @@ const Form = ({ currentId, setCurrentId }) => {
           onChange={(e) => setPostData({ ...postData, title: e.target.value })}
         />
         <TextField
-          sx={{ margin: "5px 15px" }}
           name="message"
           variant="outlined"
           label="Message"
@@ -92,7 +89,6 @@ const Form = ({ currentId, setCurrentId }) => {
           }
         />
         <TextField
-          sx={{ margin: "5px 15px" }}
           name="tags"
           variant="outlined"
           label="Tags"
@@ -112,7 +108,6 @@ const Form = ({ currentId, setCurrentId }) => {
           />
         </div>
         <Button
-          sx={{ margin: "5px 15px" }}
           className={classes.buttonSubmit}
           variant="contained"
           color="primary"
@@ -123,7 +118,6 @@ const Form = ({ currentId, setCurrentId }) => {
           Submit
         </Button>
         <Button
-          sx={{ margin: "5px 15px" }}
           variant="contained"
           color="secondary"
           size="small"
