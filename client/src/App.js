@@ -2,14 +2,14 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { Container } from "@mui/material/";
-import { ThemeProvider, createMuiTheme } from "@mui/material/styles";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 import NavBar from "./components/NavBar/NavBar";
 import Home from "./components/Home/Home";
 import Auth from "./components/Auth/Auth";
 
 const App = () => {
-  const theme = createMuiTheme();
+  const theme = createTheme();
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
