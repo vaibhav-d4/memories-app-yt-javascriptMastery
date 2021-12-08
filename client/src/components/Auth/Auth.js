@@ -16,29 +16,50 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import useStyles from "./styles";
 import Input from "./Input";
 import Icon from "./Icon";
+import { signin, signup } from "../../actions/auth";
+
+const initialState = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
 
 const Auth = () => {
   const classes = useStyles();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [showPassword, setShowPassword] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
-  const dispatch = useDispatch();
+  const [formData, setFormData] = useState(initialState);
 
-  const handleSubmit = () => {};
-  const handleChange = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (isSignup) {
+      dispatch(signup(formData, navigate));
+    } else {
+      dispatch(signin(formData, navigate));
+    }
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
   const handleShowPassword = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
+
   const switchMode = () => {
+    setShowPassword(false);
     setIsSignup((prevIsSignUp) => !prevIsSignUp);
-    handleShowPassword(false);
   };
 
   const googleSuccess = async (res) => {
     const result = res?.profileObj;
     const token = res?.tokenId;
-
     try {
       dispatch({ type: "AUTH", data: { result, token } });
       navigate("/");
@@ -71,8 +92,8 @@ const Auth = () => {
                   half
                 />
                 <Input
-                  name="firstName"
-                  label="First Name"
+                  name="lastName"
+                  label="Last Name"
                   handleChange={handleChange}
                   half
                 />
@@ -87,8 +108,8 @@ const Auth = () => {
             <Input
               name="password"
               label="Password"
+              type={showPassword ? "text" : "password"}
               handleChange={handleChange}
-              type={showPassword ? "text" : "passsword"}
               handleShowPassword={handleShowPassword}
             />
             {isSignup && (

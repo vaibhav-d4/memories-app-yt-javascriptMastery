@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { AppBar, Avatar, Toolbar, Typography, Button } from "@mui/material";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import decode from "jwt-decode";
 
 import memories from "../../images/memories.png";
 import useStyles from "./styles";
@@ -17,11 +18,16 @@ const NavBar = () => {
   useEffect(() => {
     const token = user?.token;
     setUser(JSON.parse(localStorage.getItem("profile")));
+    if (token) {
+      const decodedToken = decode(token);
+      if (decodedToken.exp * 1000 < new Date().getTime()) logout();
+    }
   }, [location]);
 
   const logout = () => {
     dispatch({ type: "LOGOUT" });
     navigate("/");
+    window.location.reload(false); // SELF ADDED
     setUser(null);
   };
 
@@ -35,7 +41,7 @@ const NavBar = () => {
             className={classes.heading}
             variant="h2"
           >
-            Memories
+            Memories{" "}
             <img
               className={classes.image}
               src={memories}
