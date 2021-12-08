@@ -27,18 +27,6 @@ const Form = ({ currentId, setCurrentId }) => {
     if (post) setPostData(post);
   }, [post]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (currentId) {
-      dispatch(updatePost({ ...postData, name: user?.result?.name }));
-      clear();
-    } else {
-      dispatch(createPost({ ...postData, name: user?.result?.name }));
-      clear();
-    }
-  };
-
   const clear = () => {
     setCurrentId(0);
     setPostData({
@@ -48,6 +36,32 @@ const Form = ({ currentId, setCurrentId }) => {
       selectedFile: "",
     });
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (currentId) {
+      dispatch(
+        updatePost(currentId, { ...postData, name: user?.result?.name })
+      );
+      clear();
+    } else {
+      dispatch(createPost({ ...postData, name: user?.result?.name }));
+      clear();
+    }
+  };
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   if (currentId) {
+  //     dispatch(updatePost({ ...postData, name: user?.result?.name }));
+  //     clear();
+  //   } else {
+  //     dispatch(createPost({ ...postData, name: user?.result?.name }));
+  //     clear();
+  //   }
+  // };
 
   if (!user?.result?.name) {
     return (
