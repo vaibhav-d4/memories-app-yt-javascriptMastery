@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const url = "https://memories-app-yt-jsmastery.herokuapp.com";
-// const url = "http://localhost:5000";
+const DEV_URL = process.env.REACT_APP_DEV_URL;
+const PROD_URL = process.env.REACT_APP_PROD_URL;
 
 const API = axios.create({
-  baseURL: url,
+  baseURL: PROD_URL, // TO CHANGE FOR DEV OR PROD
 });
 
 API.interceptors.request.use((req) => {
