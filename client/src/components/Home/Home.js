@@ -14,7 +14,7 @@ import {
   Autocomplete,
 } from "@mui/material/";
 
-import { getPosts } from "../../actions/posts";
+import { getPosts, getPostsBySearch } from "../../actions/posts";
 import Posts from "../Posts/Posts";
 import Form from "../Form/Form";
 import Pagination from "../Pagination/Pagination";
@@ -61,7 +61,7 @@ const Home = () => {
 
   const searchPost = () => {
     if (search.trim()) {
-      // FETCH SEARCH POSTS
+      dispatch(getPostsBySearch({ search, tags: tags.join(",") }));
     } else {
       navigate("/");
     }
