@@ -7,8 +7,9 @@ import useStyles from "./styles";
 
 const Posts = ({ setCurrentId }) => {
   const classes = useStyles();
-  const posts = useSelector((state) => state.posts);
-  return !posts.length ? (
+  const { posts } = useSelector((state) => state.posts);
+
+  return !posts?.length ? (
     <CircularProgress />
   ) : (
     <Grid
