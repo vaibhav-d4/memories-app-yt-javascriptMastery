@@ -38,10 +38,6 @@ const Home = () => {
   const [tags, setTags] = useState([]);
   const nullOptionsForTagsAutocomplete = [];
 
-  useEffect(() => {
-    dispatch(getPosts());
-  }, [currentId, dispatch]);
-
   const handleKeyPress = (e) => {
     if (e.keyCode === 13) {
       searchPost();
@@ -138,12 +134,11 @@ const Home = () => {
                 </Button>
               </AppBar>
               <Form currentId={currentId} setCurrentId={setCurrentId} />
-              <Paper
-                // className={classes.pagination}
-                elevation={6}
-              >
-                <Pagination />
-              </Paper>
+              {!searchQuery && !tags.length && (
+                <Paper elevation={6} className={classes.pagination}>
+                  <Pagination page={page} />
+                </Paper>
+              )}
             </Grid>
           </Grid>
         </Container>

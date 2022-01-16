@@ -4,8 +4,8 @@ const DEV_URL = process.env.REACT_APP_DEV_URL;
 const PROD_URL = process.env.REACT_APP_PROD_URL;
 
 const API = axios.create({
-  // baseURL: PROD_URL,
-  baseURL: DEV_URL,
+  baseURL: PROD_URL,
+  // baseURL: DEV_URL,
 });
 
 API.interceptors.request.use((req) => {
@@ -17,7 +17,8 @@ API.interceptors.request.use((req) => {
   return req;
 });
 
-export const fetchPosts = () => API.get("/posts");
+export const fetchPost = (id) => API.get(`/posts/${id}`);
+export const fetchPosts = (page) => API.get(`/posts?page=${page}`);
 export const fetchPostsBySearch = (searchQuery) =>
   API.get(
     `/posts/search?searchQuery=${searchQuery.search || "none"}&tags=${
