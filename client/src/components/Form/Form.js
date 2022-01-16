@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
-import useStyles from "./styles";
 import FileBase from "react-file-base64";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
 import { TextField, Button, Typography, Paper } from "@mui/material";
 
+import useStyles from "./styles";
 import { createPost, updatePost } from "../../actions/posts";
 
 const Form = ({ currentId, setCurrentId }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [postData, setPostData] = useState({
     title: "",
@@ -20,7 +23,9 @@ const Form = ({ currentId, setCurrentId }) => {
   const user = JSON.parse(localStorage.getItem("profile"));
 
   const post = useSelector((state) =>
-    currentId ? state.posts.find((message) => message._id === currentId) : null
+    currentId
+      ? state.posts.posts.find((message) => message._id === currentId)
+      : null
   );
 
   useEffect(() => {
@@ -46,26 +51,14 @@ const Form = ({ currentId, setCurrentId }) => {
       );
       clear();
     } else {
-      dispatch(createPost({ ...postData, name: user?.result?.name }));
+      dispatch(createPost({ ...postData, name: user?.result?.name }, navigate));
       clear();
     }
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   if (currentId) {
-  //     dispatch(updatePost({ ...postData, name: user?.result?.name }));
-  //     clear();
-  //   } else {
-  //     dispatch(createPost({ ...postData, name: user?.result?.name }));
-  //     clear();
-  //   }
-  // };
-
   if (!user?.result?.name) {
     return (
-      <Paper className={classes.paper}>
+      <Paper className={classes.paper} elevation={6}>
         <Typography variant="h6" align="center">
           Please Sign In to create your own memories and like other's memories
         </Typography>
