@@ -18,6 +18,10 @@ app.use("/posts", postRoutes);
 app.use("/user", userRoutes);
 
 app.get("/", (req, res) => {
+  res.send("APP IS RUNNING");
+});
+
+app.get("/", (req, res) => {
   res.send("Hello to Memories API");
 });
 
