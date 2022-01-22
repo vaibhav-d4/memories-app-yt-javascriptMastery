@@ -4,8 +4,8 @@ const DEV_URL = process.env.REACT_APP_DEV_URL;
 const PROD_URL = process.env.REACT_APP_PROD_URL;
 
 const API = axios.create({
-  baseURL: PROD_URL,
-  // baseURL: DEV_URL,
+  // baseURL: PROD_URL,
+  baseURL: DEV_URL,
 });
 
 API.interceptors.request.use((req) => {
@@ -28,7 +28,7 @@ export const fetchPostsBySearch = (searchQuery) =>
 export const createPosts = (newPost) => API.post("/posts", newPost);
 export const likePost = (id) => API.patch(`/posts/${id}/likePost`);
 export const comment = (value, id) =>
-  API.patch(`/posts/${id}/commentPost`, { value });
+  API.post(`/posts/${id}/commentPost`, { value });
 export const updatePost = (id, updatedPost) =>
   API.patch(`/posts/${id}`, updatedPost);
 export const deletePost = (id) => API.delete(`/posts/${id}`);
