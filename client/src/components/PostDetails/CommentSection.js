@@ -15,14 +15,14 @@ const CommentSection = ({ post }) => {
   const [comment, setComment] = useState("");
 
   const user = JSON.parse(localStorage.getItem("profile"));
+  const userName = user?.result?.name;
 
-  const handleClick = async () => {
-    const finalComment = `${user.result.name}: ${comment}`;
-    const newComments = await dispatch(commentPost(finalComment, post._id));
-
-    setComments(newComments);
+  const handleComment = async () => {
+    const finalComment = `${userName}: ${comment}`;
+    setComments([...comments, finalComment]);
     setComment("");
 
+    dispatch(commentPost(finalComment, post._id));
     commentsRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
@@ -59,7 +59,7 @@ const CommentSection = ({ post }) => {
               fullWidth
               disabled={!comment}
               variant="contained"
-              onClick={handleClick}
+              onClick={handleComment}
               color="primary"
             >
               Comment
